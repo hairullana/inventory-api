@@ -1,11 +1,10 @@
 import Inventory from "../models/inventory.js";
 import { onSuccess } from "../utils/response.js";
-import { stockInventorySchema } from "../validator/inventoryValidator.js";
-import { inventorySchema } from "../validator/inventoryValidator.js";
+import { createInventorySchema, updateInventorySchema, updateStockInventorySchema } from "../validator/inventoryValidator.js";
 
 export const create = async (req, res, next) => {
     try {
-        const value = inventorySchema.validateAsync(req.body);
+        const value = createInventorySchema.validateAsync(req.body);
         const [response, field] = await Inventory.create(req.body);
         onSuccess(res, 'Success create a inventory', response);
     } catch (error) {
@@ -24,7 +23,7 @@ export const get = async (req, res, next) => {
 
 export const update = async (req, res, next) => {
     try {
-        const value = inventorySchema.validateAsync(req.body);
+        const value = updateInventorySchema.validateAsync(req.body);
         const [response, field] = await Inventory.update(req.body, req.params.id);
         onSuccess(res, 'Success create a inventory', response);
     } catch (error) {
@@ -34,7 +33,7 @@ export const update = async (req, res, next) => {
 
 export const addStock = async (req, res, next) => {
     try {
-        const value = stockInventorySchema.validateAsync(req.body);
+        const value = updateStockInventorySchema.validateAsync(req.body);
         const [response, field] = await Inventory.addStock(req.body, req.params.id);
         onSuccess(res, 'Success add stock inventory', response);
     } catch (error) {

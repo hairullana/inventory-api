@@ -1,13 +1,16 @@
 import db from "../utils/db.js";
 
 class Inventory {
-    static create (request) {
+    static async create (request) {
         let sql = 'INSERT INTO inventories (name, category, stock, created_at, updated_at) VALUES (?, ?, ?, NOW(), NOW())';
         let value = [request.name, request.category, request.stock];
 
-        let data = db.query(sql, value);
-
-        return this.get();
+        return db.query(sql, value)
+            .then((result) => {
+                return this.get(result[0].insertId);
+            }).catch((error) => {
+                throw error;
+            });
     }
 
     static get (id = null) {
@@ -22,7 +25,12 @@ class Inventory {
         let sql = "UPDATE inventories SET name = ?, category = ? WHERE id = ?";
         let value = [request.name, request.category, id];
 
-        return db.query(sql, value);
+        return db.query(sql, value)
+            .then((result) => {
+                return this.get(id);
+            }).catch((error) => {
+                throw error;
+            });
     }
 
     static addStock (request, id) {
