@@ -1,0 +1,33 @@
+{
+  "name": "inventory-api",
+  "version": "1.0.0",
+  "description": "Inventory Restful API",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hairullana/inventory-api.git"
+  },
+  "keywords": [
+    "inventory",
+    "api",
+    "nodejs",
+    "express"
+  ],
+  "author": "Hairul Lana",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hairullana/inventory-api/issues"
+  },
+  "homepage": "https://github.com/hairullana/inventory-api#readme",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "joi": "^17.9.2",
+    "mysql2": "^3.5.2"
+  }
+}
